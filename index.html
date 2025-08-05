@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intern Portal</title>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+
+  <div class="background" id="bg-slideshow"></div>
+  <div class="overlay"></div>
+
+  <div class="container">
+    <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=296,fit=crop,q=95/Aq2NJ23MzBH2rx2j/she-YlenJon1O7ieeEoa.jpg" alt="Logo" class="logo">
+  
+    <h3><strong>Intern Portal</strong></h3>
+    
+    <!-- 🔗 ADD onsubmit="loginUser(event)" -->
+    <form onsubmit="loginUser(event)">
+      <input type="email" placeholder="Email" value="shiju@gmail.com">
+      <input type="password" placeholder="Password" value="********">
+      <div class="extra-features">
+        <label><input type="checkbox"> Remember me</label>
+        <a href="#">Forgot Password?</a>
+      </div>
+      <button type="submit">Login</button>
+    </form>
+
+    <div class="signup-text">
+      Don't have an account? <a href="#">Sign Up</a>
+    </div>
+    
+    <div class="quote-container">
+      <p class="quote">Strong women build strong communities.</p>
+    </div>
+  </div>
+
+  <script src="slideshow.js"></script>
+
+  <!-- ✅ This must be inside the page before closing body -->
+  <script>
+    function loginUser(e) {
+      e.preventDefault(); // Prevent default form submission
+
+      // Simulated dummy intern data
+      const internData = {
+        name: "Vishnupriya Shiju",
+        referral: "INT123VPS",
+        donations: 7500
+      };
+
+      // Save to localStorage
+      localStorage.setItem("internData", JSON.stringify(internData));
+
+      // Redirect to dashboard
+      window.location.href = "dashboard.html";
+    }
+  </script>
+</body>
+</html>

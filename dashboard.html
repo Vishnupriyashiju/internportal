@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intern Portal - She Can Foundation</title>
+  <link rel="stylesheet" href="css.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      background: url("https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1600&q=80") no-repeat center center/cover;
+      overflow: auto;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    /* Dashboard Layout */
+    #dashboard-section {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      color: white;
+    }
+
+    .dashboard-header {
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-header {
+      width: 60px;
+    }
+
+    .logout-btn {
+      background-color: #f06292;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .logout-btn:hover {
+      background-color: #c2185b;
+    }
+
+    .dashboard-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      color: white;
+    }
+
+    .card h3 {
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .card ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .card ul li {
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .quote-card {
+      text-align: center;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #ffdede;
+    }
+
+    @media (max-width: 768px) {
+      .dashboard-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      .dashboard-content {
+        grid-template-columns: 1fr;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+
+  <div id="dashboard-section">
+    <header class="dashboard-header">
+      <img src="https://shecanfoundation.org/wp-content/uploads/2021/01/cropped-logo1-1.png" class="logo-header" alt="Logo" />
+      <h2>Intern Dashboard</h2>
+      <button onclick="logoutUser()" class="logout-btn">Logout</button>
+    </header>
+
+    <div class="dashboard-content">
+      <!-- Intern Info Card -->
+      <section class="card">
+        <h3>Intern Details</h3>
+        <p><strong>Name:</strong> <span id="intern-name">Loading...</span></p>
+        <p><strong>Referral Code:</strong> <span id="referral-code">Loading...</span></p>
+        <p><strong>Total Donations Raised:</strong> ₹<span id="donations">Loading...</span></p>
+      </section>
+
+      <!-- Rewards Card -->
+      <section class="card">
+        <h3>Rewards & Unlockables</h3>
+        <ul>
+          <li>🌱 Bronze Badge – ₹100</li>
+          <li>💫 Silver Badge – ₹500</li>
+          <li>🌟 Gold Badge – ₹1000</li>
+        </ul>
+      </section>
+
+      <!-- Quote -->
+      <section class="card quote-card">
+        <p>“When you empower a woman, you empower a generation.”</p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    // Show dashboard
+    document.getElementById('dashboard-section').style.display = 'flex';
+
+    // Load intern data (simulated)
+    const internData = JSON.parse(localStorage.getItem("internData")) || {
+      name: "Vishnupriya Shiju",
+      referral: "INT123VPS",
+      donations: 7500
+    };
+
+    document.getElementById("intern-name").textContent = internData.name;
+    document.getElementById("referral-code").textContent = internData.referral;
+    document.getElementById("donations").textContent = internData.donations;
+
+    // Logout
+    function logoutUser() {
+      localStorage.removeItem("internData");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
